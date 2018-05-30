@@ -18,19 +18,47 @@ function middleVH() {
   `;
 }
 
-const Header = styled.header`
-  background-color: ${props => props.theme ? "#eee" : "#222"}
-  color: white;
-  height: 150px;
-  padding: 20px;
-`;
-
 function setColors(txtColor, bgColor) {
   return`
     color: ${txtColor};
     background-color: ${bgColor};
   `;
 }
+
+const Header = styled.header`
+  background-color: ${props => props.awesome ? "#eee" : "#222"}
+  color: white;
+  height: 150px;
+  padding: 20px;
+`;
+
+const Button = styled.button`
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+
+const ButtonPrimary = Button.extend`
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+`;
 
 class App extends Component {
 
@@ -93,7 +121,7 @@ class App extends Component {
     const submitHandler = (this.state.currentTodo) ? this.handleSubmit : this.handleEmptySubmit;
     return (
       <div className="App">
-        <Header theme="awesome">
+        <Header awesome>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React Todo</h1>
         </Header>
@@ -108,7 +136,7 @@ class App extends Component {
             handleToggle={this.handleToggle} 
             handleRemove={this.handleRemove}
             todos={this.state.todos} />
-
+          <ButtonPrimary>Click Here</ButtonPrimary>
           <Footer/>
         </div>
       </div>
