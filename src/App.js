@@ -1,10 +1,36 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import styled from 'styled-components';
 import {TodoForm, TodoList, Footer} from './components/todo';
 import {addTodo, generateId, findById, toggleTodo, updateTodo, removeTodo} from './lib/todoHelpers.js'
 import {pipe, partial} from './lib/utils'
 
+
+function middleVH() {
+  return`
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+  `;
+}
+
+const Header = styled.header`
+  background-color: ${props => props.theme ? "#eee" : "#222"}
+  color: white;
+  height: 150px;
+  padding: 20px;
+`;
+
+function setColors(txtColor, bgColor) {
+  return`
+    color: ${txtColor};
+    background-color: ${bgColor};
+  `;
+}
 
 class App extends Component {
 
@@ -63,15 +89,14 @@ class App extends Component {
       errorMessage: 'please add a proper todo'
     })
   }
-
   render() {
     const submitHandler = (this.state.currentTodo) ? this.handleSubmit : this.handleEmptySubmit;
     return (
       <div className="App">
-        <header className="App-header">
+        <Header theme="awesome">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React Todo</h1>
-        </header>
+        </Header>
         <div className="todo-form-cont">
           {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
 
